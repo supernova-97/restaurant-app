@@ -33,6 +33,17 @@ const businesses = [
     rating: 4.8,
     reviewCount: 120,
   },
+  {
+    image: "/path/to/image3.jpg",
+    name: "Ramen Town",
+    address: "367 Poppy St",
+    city: "Nashville",
+    state: "Tennessee",
+    zipcode: "55421",
+    category: "Japanese",
+    rating: 4.9,
+    reviewCount: 250,
+  },
 ];
 </script>
 
@@ -43,15 +54,19 @@ const businesses = [
       v-for="(business, index) in businesses"
       :key="index"
     >
+      <img class="business-image" src="../assets/images/pizza.png" />
       <h1 class="business-header">{{ business.name }}</h1>
       <div class="info-wrapper">
-        <p>
-          {{ business.address }}, {{ business.city }}, {{ business.zipcode }}
-          {{ business.state }}
-        </p>
-        <p>{{ business.category }}</p>
-        <p>Rating: {{ business.rating }}</p>
-        <p>Reviews: {{ business.reviewCount }}</p>
+        <div class="address-wrapper">
+          <p>{{ business.address }}</p>
+          <p>{{ business.city }}</p>
+          <p>{{ business.state }} {{ business.zipcode }}</p>
+        </div>
+        <div class="rating-wrapper">
+          <p>{{ business.category }}</p>
+          <p>{{ business.rating }} stars</p>
+          <p>{{ business.reviewCount }} reviews</p>
+        </div>
       </div>
     </div>
   </div>
@@ -59,31 +74,44 @@ const businesses = [
 
 <style scoped>
 .main-wrapper {
+  padding: 20px 80px;
   display: flex;
-}
-
-.business-wrapper {
-  width: 30%;
-  height: 250px;
-  margin: 30px;
-  border: 1px solid black;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.business-header {
-  text-align: center;
+.business-wrapper {
   padding: 10px;
+  width: 270px;
+  height: fit-content;
+  margin: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-shadow: 0px 0px 15px #00000030;
+}
+
+.business-header {
+  font-size: 1.7rem;
+  margin: 10px 0;
+}
+
+.business-image {
+  height: 260px;
+  width: 250px;
+  border-radius: 5px;
 }
 
 .info-wrapper {
-  height: 100px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: space-between;
+}
+
+.address-wrapper {
+}
+
+.rating-wrapper {
+  text-align: right;
 }
 </style>
