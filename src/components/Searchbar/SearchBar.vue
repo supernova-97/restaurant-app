@@ -15,11 +15,12 @@ const sortOptions = {
   "Highest Rating": "rating",
   "Most Reviewed": "review_count",
 };
+
 const sortOptionsKeys = Object.keys(sortOptions);
 
 const searchTerm = ref("");
 const location = ref("");
-const sortingOption = ref("best_match");
+const sortingOption = ref("");
 
 function updateSearchTerm(value) {
   searchTerm.value = value;
@@ -40,6 +41,7 @@ function updateSortingOption(value) {
 <template>
   <div class="searchbar">
     <SearchBarOptions
+      :sortOptions="sortOptions"
       :sortOptionsKeys="sortOptionsKeys"
       @selectSortOption="updateSortingOption"
     />

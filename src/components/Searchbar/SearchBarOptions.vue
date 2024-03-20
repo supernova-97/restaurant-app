@@ -1,17 +1,23 @@
 <script setup>
-import { defineEmits } from "vue";
+import { defineEmits, ref } from "vue";
 
 const emit = defineEmits(["selectSortOption"]);
 
+const selectedOption = ref(null);
+
 const props = defineProps({
-  sortOptionsKeys: {
+  sortOptions: {
     type: Object,
-    required: true,
+  },
+  sortOptionsKeys: {
+    type: Array,
   },
 });
 
-function selectOption(option) {
-  emit("selectSortOption", option);
+function selectOption(optionKey) {
+  const optionValue = props.sortOptions[optionKey];
+  selectedOption.value = optionValue;
+  emit("selectSortOption", optionValue);
 }
 </script>
 
@@ -19,9 +25,10 @@ function selectOption(option) {
   <div class="options-wrapper">
     <ul class="search-options">
       <li
-        v-for="(option, index) in sortOptionsKeys"
-        :key="index"
+        v-for="(option, key) in sortOptionsKeys"
+        :key="key"
         @click="selectOption(option)"
+        :class="{ selected: selectedOption === props.sortOptions[option] }"
       >
         <span class="word">{{ option.split(" ")[0] }}</span>
         <span class="word">{{ option.split(" ")[1] }}</span>
@@ -52,6 +59,11 @@ function selectOption(option) {
 }
 
 .search-options li .word {
-  display: block; /* Display each word on a separate line */
+  display: block;
+  cursor: pointer;
+}
+
+.selected {
+  color: #c5922a;
 }
 </style>

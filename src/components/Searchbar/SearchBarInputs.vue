@@ -15,11 +15,11 @@ const props = defineProps({
 const emit = defineEmits(["updateSearchTerm", "updateLocation"]);
 
 function updateSearchTerm(event) {
-  emit("updateSearchTerm", event.target.value); // Emitting the value directly
+  emit("updateSearchTerm", event.target.value); 
 }
 
 function updateLocation(event) {
-  emit("updateLocation", event.target.value); // Emitting the value directly
+  emit("updateLocation", event.target.value); 
 }
 </script>
 
