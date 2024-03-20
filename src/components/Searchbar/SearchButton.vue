@@ -1,7 +1,31 @@
-<script setup></script>
+<script setup>
+function handleSubmit(e) {
+  e.preventDefault;
+  console.log(
+    `Looking for ${props.searchTerm} in ${props.location}, filter: ${props.sortingOption}`
+  );
+}
+
+const props = defineProps({
+  sortingOption: {
+    type: String,
+  },
+  searchTerm: {
+    type: String,
+  },
+  location: {
+    type: String,
+  },
+  isFormValid: {
+    type: Boolean,
+  },
+});
+</script>
 
 <template>
-  <button class="search-button">Let's go!</button>
+  <button class="search-button" @click="handleSubmit" :disabled="!isFormValid">
+    Let's go!
+  </button>
 </template>
 
 <style>

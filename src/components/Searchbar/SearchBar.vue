@@ -48,10 +48,10 @@ function updateSortingOption(value) {
     <SearchBarInputs
       :searchTerm="searchTerm"
       :location="location"
+      :sortingOption="sortingOption"
       @updateSearchTerm="updateSearchTerm"
       @updateLocation="updateLocation"
     />
-    <SearchButton />
   </div>
 </template>
 
