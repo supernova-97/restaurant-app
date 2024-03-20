@@ -1,9 +1,32 @@
-<script setup></script>
+<script setup>
+import { defineProps, defineEmits } from "vue";
+
+const props = defineProps({
+  searchTerm: {
+    type: String,
+    required: true,
+  },
+  location: {
+    type: String,
+    required: true,
+  },
+});
+
+const emit = defineEmits(["updateSearchTerm", "updateLocation"]);
+
+function updateSearchTerm(event) {
+  emit("updateSearchTerm", event.target.value); // Emitting the value directly
+}
+
+function updateLocation(event) {
+  emit("updateLocation", event.target.value); // Emitting the value directly
+}
+</script>
 
 <template>
   <div class="input-wrapper">
-    <input class="search-input" />
-    <input class="search-input" />
+    <input class="search-input" :value="searchTerm" @input="updateSearchTerm" />
+    <input class="search-input" :value="location" @input="updateLocation" />
   </div>
 </template>
 

@@ -1,17 +1,28 @@
 <script setup>
-const sortOptions = {
-  "Best Match": "best_match",
-  "Highest Rating": "rating",
-  "Most Reviewed": "review_count",
-};
+import { defineEmits } from "vue";
 
-const sortOptionsKeys = Object.keys(sortOptions);
+const emit = defineEmits(["selectSortOption"]);
+
+const props = defineProps({
+  sortOptionsKeys: {
+    type: Object,
+    required: true,
+  },
+});
+
+function selectOption(option) {
+  emit("selectSortOption", option);
+}
 </script>
 
 <template>
   <div class="options-wrapper">
     <ul class="search-options">
-      <li v-for="(option, index) in sortOptionsKeys" :key="index">
+      <li
+        v-for="(option, index) in sortOptionsKeys"
+        :key="index"
+        @click="selectOption(option)"
+      >
         <span class="word">{{ option.split(" ")[0] }}</span>
         <span class="word">{{ option.split(" ")[1] }}</span>
       </li>

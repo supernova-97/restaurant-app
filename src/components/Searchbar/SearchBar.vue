@@ -2,12 +2,53 @@
 import SearchBarInputs from "./SearchBarInputs.vue";
 import SearchBarOptions from "./SearchBarOptions.vue";
 import SearchButton from "./SearchButton.vue";
+import { ref, defineEmits } from "vue";
+
+const emits = defineEmits([
+  "selectSortOption",
+  "updateSearchTerm",
+  "updateLocation",
+]);
+
+const sortOptions = {
+  "Best Match": "best_match",
+  "Highest Rating": "rating",
+  "Most Reviewed": "review_count",
+};
+const sortOptionsKeys = Object.keys(sortOptions);
+
+const searchTerm = ref("");
+const location = ref("");
+const sortingOption = ref("best_match");
+
+function updateSearchTerm(value) {
+  searchTerm.value = value;
+  console.log("searchTerm", searchTerm.value);
+}
+
+function updateLocation(value) {
+  location.value = value;
+  console.log("location:", location.value);
+}
+
+function updateSortingOption(value) {
+  sortingOption.value = value;
+  console.log("sortOption", sortingOption.value);
+}
 </script>
 
 <template>
   <div class="searchbar">
-    <SearchBarOptions />
-    <SearchBarInputs />
+    <SearchBarOptions
+      :sortOptionsKeys="sortOptionsKeys"
+      @selectSortOption="updateSortingOption"
+    />
+    <SearchBarInputs
+      :searchTerm="searchTerm"
+      :location="location"
+      @updateSearchTerm="updateSearchTerm"
+      @updateLocation="updateLocation"
+    />
     <SearchButton />
   </div>
 </template>
