@@ -1,50 +1,10 @@
 <script setup>
-const businesses = [
-  {
-    image: "/path/to/image1.jpg",
-    name: "Pizza Heaven",
-    address: "123 Main St",
-    city: "Austin",
-    state: "Texas",
-    zipcode: "12345",
-    category: "Italian",
-    rating: 4.5,
-    reviewCount: 100,
+const props = defineProps({
+  businesses: {
+    type: Array,
+    required: true,
   },
-  {
-    image: "/path/to/image2.jpg",
-    name: "Taco Tuesday",
-    address: "456 Elm St",
-    city: "Sacramento",
-    state: "California",
-    zipcode: "67890",
-    category: "Mexican",
-    rating: 4.0,
-    reviewCount: 80,
-  },
-  {
-    image: "/path/to/image3.jpg",
-    name: "Sushi Salamander",
-    address: "789 Oak St",
-    city: "Denver",
-    state: "Colorado",
-    zipcode: "54321",
-    category: "Japanese",
-    rating: 4.8,
-    reviewCount: 120,
-  },
-  {
-    image: "/path/to/image3.jpg",
-    name: "Ramen Town",
-    address: "367 Poppy St",
-    city: "Nashville",
-    state: "Tennessee",
-    zipcode: "55421",
-    category: "Japanese",
-    rating: 4.9,
-    reviewCount: 250,
-  },
-];
+});
 </script>
 
 <template>
@@ -57,14 +17,14 @@ const businesses = [
       <img class="business-image" src="../assets/images/pizza.png" />
       <h1 class="business-header">{{ business.name }}</h1>
       <div class="info-wrapper">
-        <div class="address-wrapper">
+        <div>
           <p>{{ business.address }}</p>
           <p>{{ business.city }}</p>
           <p>{{ business.state }} {{ business.zipcode }}</p>
         </div>
         <div class="rating-wrapper">
-          <p>{{ business.category }}</p>
-          <p>{{ business.rating }} stars</p>
+          <p class="category">{{ business.category }}</p>
+          <p class="rating">{{ business.rating }} stars</p>
           <p>{{ business.reviewCount }} reviews</p>
         </div>
       </div>
@@ -74,7 +34,7 @@ const businesses = [
 
 <style scoped>
 .main-wrapper {
-  padding: 20px 80px;
+  padding: 20px 150px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -108,10 +68,18 @@ const businesses = [
   justify-content: space-between;
 }
 
-.address-wrapper {
-}
-
 .rating-wrapper {
   text-align: right;
+}
+
+.category {
+  color: #c5922a;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.rating {
+  color: #c5922a;
+  font-weight: 700;
 }
 </style>
