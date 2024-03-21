@@ -29,9 +29,9 @@ function selectOption(optionKey) {
         :key="key"
         @click="selectOption(option)"
         :class="{ selected: selectedOption === props.sortOptions[option] }"
+        class="list-element"
       >
-        <span class="word">{{ option.split(" ")[0] }}</span>
-        <span class="word">{{ option.split(" ")[1] }}</span>
+        {{ option }}
       </li>
     </ul>
   </div>
@@ -58,8 +58,9 @@ function selectOption(optionKey) {
   text-align: center;
 }
 
-.search-options li .word {
-  display: block;
+.list-element {
+  width: 90px;
+  text-align: center;
   cursor: pointer;
 }
 
