@@ -1,6 +1,7 @@
 <script setup>
 import Business from "./components/Business.vue";
 import SearchBar from "./components/Searchbar/SearchBar.vue";
+import API from "./utils/API.vue";
 
 const businesses = [
   {
@@ -53,6 +54,7 @@ const businesses = [
 <template>
   <SearchBar />
   <Business :businesses="businesses" />
+  <API />
 </template>
 
 <style scoped></style>
