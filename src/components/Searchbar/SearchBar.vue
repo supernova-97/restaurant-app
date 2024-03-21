@@ -1,7 +1,6 @@
 <script setup>
 import SearchBarInputs from "./SearchBarInputs.vue";
 import SearchBarOptions from "./SearchBarOptions.vue";
-import SearchButton from "./SearchButton.vue";
 import { ref, defineEmits } from "vue";
 
 const emits = defineEmits([
@@ -24,17 +23,14 @@ const sortingOption = ref("");
 
 function updateSearchTerm(value) {
   searchTerm.value = value;
-  console.log("searchTerm", searchTerm.value);
 }
 
 function updateLocation(value) {
   location.value = value;
-  console.log("location:", location.value);
 }
 
 function updateSortingOption(value) {
   sortingOption.value = value;
-  console.log("sortOption", sortingOption.value);
 }
 </script>
 
