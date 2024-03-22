@@ -1,35 +1,25 @@
 <script setup>
-import { defineProps, defineEmits, computed } from "vue";
-import SearchButton from "./SearchButton.vue";
+import { ref, defineProps } from "vue";
+import { search } from "@/utils/search";
 
 const props = defineProps({
-  searchTerm: {
-    type: String,
-    required: true,
-  },
-  location: {
-    type: String,
-    required: true,
-  },
   sortingOption: {
     type: String,
-    required: true,
   },
 });
 
-const emit = defineEmits(["updateSearchTerm", "updateLocation"]);
+const searchTerm = ref("");
+const location = ref("");
 
-function updateSearchTerm(event) {
-  emit("updateSearchTerm", event.target.value);
+function handleSubmit() {
+  const searchValues = {
+    searchTerm: searchTerm.value,
+    location: location.value,
+    sortingOption: props.sortingOption,
+  };
+  
+  search(searchValues.searchTerm, searchValues.location, props.sortingOption);
 }
-
-function updateLocation(event) {
-  emit("updateLocation", event.target.value);
-}
-
-const isFormValid = computed(() => {
-  return props.searchTerm.trim() !== "" && props.location.trim() !== "";
-});
 </script>
 
 <template>
@@ -37,25 +27,18 @@ const isFormValid = computed(() => {
     <div class="input-wrapper">
       <input
         class="search-input"
-        :value="searchTerm"
-        @input="updateSearchTerm"
+        v-model="searchTerm"
         placeholder="What are you craving?"
         required
       />
       <input
         class="search-input"
-        :value="location"
-        @input="updateLocation"
+        v-model="location"
         placeholder="Where do you want to eat?"
         required
       />
     </div>
-    <SearchButton
-      :searchTerm="searchTerm"
-      :location="location"
-      :sortingOption="sortingOption"
-      :isFormValid="isFormValid"
-    />
+    <button class="search-button" @click="handleSubmit">Let's go!</button>
   </form>
 </template>
 
@@ -86,5 +69,20 @@ const isFormValid = computed(() => {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+.search-button {
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  background-color: #c5922a;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 15px #ffffff70;
+  }
 }
 </style>

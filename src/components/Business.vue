@@ -1,31 +1,29 @@
 <script setup>
-const props = defineProps({
-  businesses: {
-    type: Array,
-    required: true,
-  },
-});
+const props = defineProps(["searchResults"]);
+console.log("results in business", props.searchResults);
+console.log("businesses", props.searchResults.businesses);
+const businesses = props.searchResults ? props.searchResults.businesses : [];
 </script>
 
 <template>
-  <div class="main-wrapper">
+  <div class="main-wrapper" v-if="businesses && businesses.length > 0">
     <div
       class="business-wrapper"
       v-for="(business, index) in businesses"
       :key="index"
     >
-      <img class="business-image" src="../assets/images/pizza.png" />
+      <img class="business-image" :src="business.image_url" />
       <h1 class="business-header">{{ business.name }}</h1>
       <div class="info-wrapper">
         <div>
-          <p>{{ business.address }}</p>
-          <p>{{ business.city }}</p>
-          <p>{{ business.state }} {{ business.zipcode }}</p>
+          <p>{{ business.location.address1 }}</p>
+          <p>{{ business.location.city }}</p>
+          <p>{{ business.location.state }} {{ business.location.zip_code }}</p>
         </div>
         <div class="rating-wrapper">
-          <p class="category">{{ business.category }}</p>
+          <p class="category">{{ business.categories[0].title }}</p>
           <p class="rating">{{ business.rating }} stars</p>
-          <p>{{ business.reviewCount }} reviews</p>
+          <p>{{ business.review_count }} reviews</p>
         </div>
       </div>
     </div>

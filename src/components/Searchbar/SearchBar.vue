@@ -1,13 +1,7 @@
 <script setup>
 import SearchBarInputs from "./SearchBarInputs.vue";
 import SearchBarOptions from "./SearchBarOptions.vue";
-import { ref, defineEmits } from "vue";
-
-const emits = defineEmits([
-  "selectSortOption",
-  "updateSearchTerm",
-  "updateLocation",
-]);
+import { ref } from "vue";
 
 const sortOptions = {
   "Best Match": "best_match",
@@ -16,18 +10,7 @@ const sortOptions = {
 };
 
 const sortOptionsKeys = Object.keys(sortOptions);
-
-const searchTerm = ref("");
-const location = ref("");
 const sortingOption = ref("");
-
-function updateSearchTerm(value) {
-  searchTerm.value = value;
-}
-
-function updateLocation(value) {
-  location.value = value;
-}
 
 function updateSortingOption(value) {
   sortingOption.value = value;
@@ -41,13 +24,7 @@ function updateSortingOption(value) {
       :sortOptionsKeys="sortOptionsKeys"
       @selectSortOption="updateSortingOption"
     />
-    <SearchBarInputs
-      :searchTerm="searchTerm"
-      :location="location"
-      :sortingOption="sortingOption"
-      @updateSearchTerm="updateSearchTerm"
-      @updateLocation="updateLocation"
-    />
+    <SearchBarInputs :sortingOption="sortingOption" />
   </div>
 </template>
 
