@@ -1,9 +1,4 @@
-<script setup>
-const props = defineProps(["searchResults"]);
-console.log("results in business", props.searchResults);
-console.log("businesses", props.searchResults.businesses);
-const businesses = props.searchResults ? props.searchResults.businesses : [];
-</script>
+<script setup></script>
 
 <template>
   <div class="main-wrapper" v-if="businesses && businesses.length > 0">

@@ -27,8 +27,9 @@ export function search(term, location, sortingOption) {
       headers: options.headers,
     })
     .then((response) => {
-      console.log("results", response.data);
-      return response.data;
+      const data = response.data;
+      console.log("search response", data);
+      return data;
     })
     .catch((error) => {
       console.error(error);

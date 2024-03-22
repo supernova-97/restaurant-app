@@ -17,7 +17,6 @@ function handleSubmit() {
     location: location.value,
     sortingOption: props.sortingOption,
   };
-  
   search(searchValues.searchTerm, searchValues.location, props.sortingOption);
 }
 </script>
